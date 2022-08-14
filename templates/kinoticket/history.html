@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'assets/css/history.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'assets/images/icon.ico' %}" type="image/x-icon">
+    <title>Purchase history | kino kör</title>
+    <script type="text/javascript">
+    document.ondragstart = noselect;
+    document.onselectstart = noselect;
+    document.oncontextmenu = noselect;
+    function noselect() {return false;}
+    </script>
+  </head>
+  <body>
+    <!-- Menu -->
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <div class="header__logo">
+            <img src="{% static 'assets/images/logo.png' %}">
+          </div>
+          <nav>
+            <a class="nav__link" href="{% url 'history'%}">history</a>
+            <a class="nav__link" href="{% url 'main'%}">Movies</a>
+            <a class="nav__link" href="{% url 'news'%}">News</a>
+            <a class="nav__link" href="{% url 'feedback'%}">Feedback</a>
+            <a class="nav__link" href="{% url 'contacts'%}">Contacts</a>
+            {% if request.user.is_authenticated %}
+            <a class="nav__link" href="{% url 'logout' %}"><img src="{% static 'assets/images/logout.png' %}" class="nav__profile"></a>
+            {% else %}
+
+            <a class="nav__link" href="{% url 'register' %}"><img src="{% static 'assets/images/profile.png' %}" class="nav__profile"></a>
+            {% endif %}
+        </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- History -->
+    <section class="history">
+      <div class="container">
+        <div class="history__title">PURCHASE HISTORY</div>
+        <div class="history__head">
+          <div class="history_head__col"></div>
+          <div class="history_head__col">Date</div>
+          <div class="history_head__col">Film</div>
+          <div class="history_head__col">Price</div>
+          <div class="history_head__col">Return</div>
+        </div>
+        {% for h in his %}
+        <div class="history__purchases">
+          <div class="history__purchases_row">
+            <img class="row__img" src="{{ h.ticket.film.img.url }}">
+            <div class="row_divider">{{ h.ticket.start_time }}</div>
+            <div class="row_divider">{{ h.ticket.film.name }}</div>
+            <div class="row_divider">{{ h.ticket.tic_price }}₸</div>
+            <div class="row_divider">
+              {% now "Y-m-d" as todays_date %}
+              {% if h.ticket.start_time|date:"Y-m-d" > todays_date %}
+              <a href="{% url 'delete' pk=h.pk %}">return ticket</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    
+   
+
+  </body>
+</html>

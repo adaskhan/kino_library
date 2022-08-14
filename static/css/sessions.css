@@ -1,0 +1,169 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #171c1f;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: 1167px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+
+.header {
+  width: 100%;
+  height: 65px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  background: #F4AA3A;
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  padding-top: 17px;
+}
+
+/* NAV */
+
+.nav__link {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 30px;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  padding-top: 22px;
+  color: #171c1f;
+}
+
+.nav__link::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+
+  background-color: #171c1f;
+  opacity: 0;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  transition: opacity .1s linear;
+}
+
+.nav__link:hover::after {
+  opacity: 1;
+}
+
+.nav__profile {
+  width: 15px;
+  height: 15px;
+}
+
+/* SESSIONS */
+
+.sessions {
+  width: 100%;
+  height: 574px;
+  margin-top: 130px;
+}
+
+.sessions__title {
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 42px;
+}
+
+.schedule__head {
+  width: 100%;
+  height: 40px;
+  background: #DDDDDD;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 20px;
+  color: #000000;
+}
+
+.schedule__sessions {
+  font-size: 20px;
+  color: #000000;
+}
+
+.sc_sessions_row {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row_divider {
+  padding-left: 20px;
+}
+
+.row_divider__button {
+  width: 90px;
+  height: 28px;
+  border: 1px solid #A6CA82;
+  border-radius: 5px;
+  background: #A6CA82;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* FOOTER */
+
+.footer {
+  margin-top: 64px;
+  width: 100%;
+  height: 156px;
+  background: #1B2733;
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sns {
+  width: 42px;
+  height: 42px;
+  margin-top: 36px;
+  margin-right: 22px;
+  filter: invert(1);
+}
+
+.footer__subtitle {
+  color: #ffffff;
+  text-align: center;
+  margin-top: 30px;
+}

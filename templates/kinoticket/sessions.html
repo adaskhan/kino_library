@@ -1,0 +1,35 @@
+{% extends 'kinoticket/base.html' %}
+{% load static i18n %}
+{% block title %} {{ movie.title }} {% endblock title %}
+
+{% block movie %}
+    <!-- Sessions -->
+    <section class="sessions">
+      <div class="container">
+        <div class="sessions__title">MOVIE SESSIONS</div>
+        <div class="schedule__head">
+          <div class="sc_head__col">Time</div>
+          
+
+            <div class="sc_head__col">cinema</div>
+          <div class="sc_head__col">Price</div>
+          </form>
+          
+          <div class="sc_head__col">⠀⠀⠀</div>
+        </div>
+        <div class="schedule__sessions">
+          {% for session in sessions %}
+          <div class="sc_sessions_row">
+            <div class="row_divider">{{ session.start_time }}</div>
+            <div class="row_divider">{{ session.kino_teatre }}</div>
+            <div class="row_divider">{{ session.tic_price }}₸</div>
+            <a href="{% url 'seat' pk=film.id %}"><div class="row_divider__button">Buy</div></a>
+          </div>
+          {% endfor %}
+          
+
+        </div>
+      </div>
+    </section>
+{% endblock movie %}
+    <!-- Footer -->
