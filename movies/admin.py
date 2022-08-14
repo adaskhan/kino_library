@@ -6,10 +6,12 @@ from .models import Category, Movies, MovieShots, RatingStar, Rating, Reviews, G
 # Register your models here.
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from modeltranslation.admin import TranslationAdmin
 
 
 class MovieAdminForm(forms.ModelForm):
-    description = forms.CharField(label="Описание", widget=CKEditorUploadingWidget())
+    description_ru = forms.CharField(label="Описание", widget=CKEditorUploadingWidget())
+    description_en = forms.CharField(label="Описание", widget=CKEditorUploadingWidget())
 
     class Meta:
         model = Movies
@@ -17,8 +19,8 @@ class MovieAdminForm(forms.ModelForm):
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "url")
+class CategoryAdmin(TranslationAdmin):
+    list_display = ("name", "url")
     list_display_links = ("name", )
 
 
@@ -40,7 +42,7 @@ class MovieShotsInline(admin.TabularInline):
 
 
 @admin.register(Movies)
-class MoviesAdmin(admin.ModelAdmin):
+class MoviesAdmin(TranslationAdmin):
     list_display = ("title", "category", "url", "draft", "get_poster")
     list_filter = ("category", "year")
     search_fields = ("title", "category__name")
@@ -110,12 +112,12 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 @admin.register(Genre)
-class GenreAdmin(admin.ModelAdmin):
+class GenreAdmin(TranslationAdmin):
     list_display = ("name", "url")
 
 
 @admin.register(Actor)
-class ActorAdmin(admin.ModelAdmin):
+class ActorAdmin(TranslationAdmin):
     list_display = ("name", "age", "get_image")
     readonly_fields = ("get_image", )
 
@@ -131,7 +133,7 @@ class RaitingAdmin(admin.ModelAdmin):
 
 
 @admin.register(MovieShots)
-class MovieShotsAdmin(admin.ModelAdmin):
+class MovieShotsAdmin(TranslationAdmin):
     list_display = ("title", "movie", "get_image")
     readonly_fields = ("get_image",)
 
